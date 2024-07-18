@@ -1,0 +1,128 @@
+{
+  "version": 2,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#0073AA",
+          "name": "Primary"
+        },
+        {
+          "slug": "secondary",
+          "color": "#005177",
+          "name": "Secondary"
+        }
+      ]
+    },
+    "appearanceTools": true,
+    "typography": {
+      "fluid": true,
+      "fontFamilies": [
+        {
+          "fontFamily": "\"Space Mono\", monospace",
+          "name": "Space Mono",
+          "slug": "space-mono",
+          "fontFace": [
+            {
+              "fontFamily": "Space Mono",
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "src": ["file:./assets/fonts/SpaceMono/SpaceMono-Regular.woff2"]
+            },
+            {
+              "fontFamily": "Space Mono",
+              "fontStyle": "normal",
+              "fontWeight": "700",
+              "src": ["file:./assets/fonts/SpaceMono/SpaceMono-Bold.woff2"]
+            }
+          ]
+        },
+        {
+          "fontFace": [
+            {
+              "fontDisplay": "block",
+              "fontFamily": "Roboto Flex",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "100 900",
+              "src": [
+                "file:./assets/fonts/RobotoFlex/RobotoFlex-VariableFont_GRAD,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC,opsz,slnt,wdth,wght.woff2"
+              ]
+            }
+          ],
+          "fontFamily": "\"Roboto Flex\", sans-serif",
+          "name": "Roboto Flex",
+          "slug": "roboto-flex"
+          },
+          {
+            "fontFace": [
+              {
+                "fontDisplay": "block",
+                "fontFamily": "Mulish",
+                "fontStretch": "normal",
+                "fontStyle": "normal",
+                "fontWeight": "100 800",
+                "src": [
+                  "file:./assets/fonts/Mulish/Mulish-VariableFont_wght.woff2"
+                ]
+              }
+            ],
+            "fontFamily": "\"Mulish\", sans-serif",
+            "name": "Mulish",
+            "slug": "mulish"
+          }
+      ],
+      "fontSizes": [
+        {
+          "fluid": false,
+          "size": "0.875rem",
+          "slug": "small"
+        },
+        {
+          "fluid": false,
+          "size": "1rem",
+          "slug": "medium"
+        },
+        {
+          "fluid": {
+            "min": "1rem",
+            "max": "1.25rem"
+          },
+          "size": "1.25rem",
+          "slug": "large"
+        },
+        {
+          "fluid": {
+            "min": "1.5rem",
+            "max": "2rem"
+          },
+          "size": "2rem",
+          "slug": "x-large"
+        },
+        {
+          "fluid": {
+            "min": "2.5rem",
+            "max": "3rem"
+          },
+          "size": "3rem",
+          "slug": "xx-large"
+        }
+      ],
+      "writingMode": true
+    }
+  },
+  "templateParts": [
+    {
+      "name": "header",
+      "title": "Header",
+      "area": "header"
+    },
+    {
+      "name": "footer",
+      "title": "Footer",
+      "area": "footer"
+    }
+  ],
+  "customTemplates": []
+}

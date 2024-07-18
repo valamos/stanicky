@@ -1,0 +1,132 @@
+/*
+Theme Name: Stanicky
+Author: Prestige Global
+Author URI: https://prestigeglobe.com
+Description: A block theme used for projects by Prestige Global LLC
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: stanicky
+*/
+
+body {
+    display: none;
+}
+
+.body-visible, .block-editor-iframe__body, .editor-styles-wrapper {
+    display: block;
+}
+
+p:empty {
+    display: none;
+}
+
+.site-footer h3 {
+    color: var(--wp--preset--color--black);
+}
+
+.site-header-wrapper, .site-footer-wrapper {
+    background-color: #f0efefcf;
+    color: var(--wp--preset--color--black);
+}
+
+.site-header, .site-footer {
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.site-header {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.site-logo-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-columns .wp-block-column {
+    display: flex;
+    align-items: center;
+}
+
+.header-columns .wp-block-column:nth-child(1) {
+    justify-content: flex-start;
+}
+
+.header-columns .wp-block-column:nth-child(3) {
+    justify-content: flex-end;
+}
+
+.site-logo img {
+    max-width: 150px;
+    height: auto;
+}
+
+.site-footer {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    text-align: center;
+}
+
+.footer-text {
+    margin: 0;
+    text-align: center;
+}
+
+.footer-text a {
+    text-decoration: none;
+    color: var(--wp--preset--color--black);
+}
+
+.header-columns {
+    align-items: center !important;
+    margin-bottom: 0 !important;
+}
+
+.stanicky-nav {
+    justify-content: center !important;
+    border-top: 1px solid var(--wp--preset--color--black);
+    height: 80px;    
+}
+
+.stanicky-nav a {
+    font-size: 24px;
+    text-transform: uppercase;
+    padding: 0 20px;
+}
+
+@media (max-width: 1000px) {
+    .stanicky-nav a {
+        font-size: 18px;
+    }
+    .site-logo img {
+        max-width: 120px;
+    }
+}
+
+@media (max-width: 781px) {
+    .left-navigation {
+        display: none !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .right-navigation .wp-block-navigation__container.is-responsive {
+        display: inline-block;
+        margin: 0 auto;
+    }
+    .right-navigation .wp-block-navigation__container.is-responsive .wp-block-navigation-item {
+        display: inline-block;
+        margin: 0 auto;
+    }
+    .right-navigation .wp-block-navigation__container.is-responsive .wp-block-navigation-item a {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    .wp-block-navigation__responsive-container-close svg, .wp-block-navigation__responsive-container-open svg {
+        height: 48px;
+        width: 48px;
+    }
+}
