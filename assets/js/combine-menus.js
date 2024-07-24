@@ -34,6 +34,13 @@ jQuery(document).ready(function($) {
                 $originalNavItems.appendTo($rightNav);
             }
 
+            // Check the number of original navigation items and add class if there are 6 items
+            if ($originalNavItems.length === 6) {
+                $('body').addClass('nav-six');
+            } else {
+                $('body').removeClass('nav-six');
+            }
+
             // Show the body once the header is set up correctly
             $('body').addClass('body-visible');
         }

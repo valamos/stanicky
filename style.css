@@ -97,6 +97,13 @@ p:empty {
     padding: 0 20px;
 }
 
+@media (max-width: 1500px) {
+    .nav-six .stanicky-nav a {
+        font-size: 18px;
+        padding: 0;
+    }
+}
+
 @media (max-width: 1000px) {
     .stanicky-nav a {
         font-size: 18px;
@@ -109,6 +116,9 @@ p:empty {
 @media (max-width: 781px) {
     .left-navigation {
         display: none !important;
+    }
+    .nav-six .stanicky-nav a {
+        font-size: 14px;
     }
 }
 
