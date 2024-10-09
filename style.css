@@ -3,7 +3,7 @@ Theme Name: Stanicky
 Author: Prestige Global
 Author URI: https://prestigeglobe.com
 Description: A block theme used for projects by Prestige Global LLC
-Version: 1.0
+Version: 1.1
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: stanicky
@@ -13,7 +13,7 @@ body {
     display: none;
 }
 
-.body-visible, .block-editor-iframe__body, .editor-styles-wrapper {
+.body-visible, .block-editor-iframe__body, .editor-styles-wrapper, .block-editor-writing-flow {
     display: block;
 }
 
