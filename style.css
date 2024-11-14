@@ -13,7 +13,7 @@ body {
     display: none;
 }
 
-.body-visible, body.block-editor-writing-flow {
+.body-visible, body.block-editor-writing-flow, .editor-styles-wrapper {
     display: block;
 }
 

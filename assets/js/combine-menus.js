@@ -46,28 +46,8 @@ jQuery(document).ready(function($) {
         }
     }
 
-    // Set up a Mutation Observer to watch for changes in the deepest right navigation ul elements
-    const observer = new MutationObserver(function(mutationsList, observer) {
-        for (const mutation of mutationsList) {
-            if (mutation.type === 'childList') {
-                // Run splitNavigation once navigation items are detected
-                splitNavigation();
-                // Disconnect the observer once the initial items are loaded
-                observer.disconnect();
-                break;
-            }
-        }
-    });
-
-    // Select the deepest ul elements within right-navigation
-    const rightNavContainers = document.querySelectorAll('.right-navigation ul:not(:has(ul))');
-    rightNavContainers.forEach(container => {
-        observer.observe(container, { childList: true });
-    });
+    setTimeout(splitNavigation, 200);
 
     // Also trigger splitNavigation on resize
     $(window).resize(splitNavigation);
-
-    // Try initial split on document ready
-    splitNavigation();
 });
