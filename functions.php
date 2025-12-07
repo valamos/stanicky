@@ -38,34 +38,67 @@ function stanicky_textdomain() {
 add_action( 'after_setup_theme', 'stanicky_textdomain' );
 
 // Automatic theme updates from the GitHub repository
-add_filter('pre_set_site_transient_update_themes', 'automatic_GitHub_updates', 100, 1);
-function automatic_GitHub_updates($data) {
-  // Theme information
-  $theme   = get_stylesheet(); // Folder name of the current theme
-  $current = wp_get_theme()->get('Version'); // Get the version of the current theme
-  // GitHub information
-  $user = 'valamos'; // The GitHub username hosting the repository
-  $repo = 'stanicky'; // Repository name as it appears in the URL
-  // Get the latest release tag from the repository. The User-Agent header must be sent, as per
-  // GitHub's API documentation: https://developer.github.com/v3/#user-agent-required
-  $file = @json_decode(@file_get_contents('https://api.github.com/repos/'.$user.'/'.$repo.'/releases/latest', false,
-      stream_context_create(['http' => ['header' => "User-Agent: ".$user."\r\n"]])
-  ));
-  if($file) {
-	$update = filter_var($file->tag_name, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-    // Only return a response if the new version number is higher than the current version
-    if($update > $current) {
-  	  $data->response[$theme] = array(
-	      'theme'       => $theme,
-	      // Strip the version number of any non-alpha characters (excluding the period)
-	      // This way you can still use tags like v1.1 or ver1.1 if desired
-	      'new_version' => $update,
-	      'url'         => 'https://github.com/'.$user.'/'.$repo,
-	      'package'     => $file->assets[0]->browser_download_url,
-      );
+add_filter( 'pre_set_site_transient_update_themes', 'automatic_GitHub_updates', 100, 1 );
+function automatic_GitHub_updates( $data ) {
+    // Theme information
+    $theme   = get_stylesheet(); // Folder name of the current theme
+    $current = wp_get_theme()->get( 'Version' ); // Get the version of the current theme
+    // GitHub information
+    $user = 'valamos'; // The GitHub username hosting the repository
+    $repo = 'stanicky'; // Repository name as it appears in the URL
+
+    $release = get_transient( 'stanicky_latest_release' );
+
+    if ( false === $release ) {
+        $response = wp_remote_get(
+            'https://api.github.com/repos/' . $user . '/' . $repo . '/releases/latest',
+            array(
+                'headers' => array(
+                    'User-Agent' => $user,
+                    'Accept'     => 'application/vnd.github+json',
+                ),
+                'timeout' => 10,
+            )
+        );
+
+        if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
+            return $data;
+        }
+
+        $release = json_decode( wp_remote_retrieve_body( $response ) );
+
+        if ( null === $release ) {
+            return $data;
+        }
+
+        set_transient( 'stanicky_latest_release', $release, DAY_IN_SECONDS );
     }
-  }
-  return $data;
+
+    if ( ! $release ) {
+        return $data;
+    }
+
+    $update = filter_var( $release->tag_name ?? '', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
+
+    // Only return a response if the new version number is higher than the current version
+    if ( $update && version_compare( $update, $current, '>' ) ) {
+        $package_url = $release->assets[0]->browser_download_url ?? '';
+
+        if ( ! $package_url ) {
+            return $data;
+        }
+
+        $data->response[ $theme ] = array(
+            'theme'       => $theme,
+            // Strip the version number of any non-alpha characters (excluding the period)
+            // This way you can still use tags like v1.1 or ver1.1 if desired
+            'new_version' => $update,
+            'url'         => 'https://github.com/' . $user . '/' . $repo,
+            'package'     => $package_url,
+        );
+    }
+
+    return $data;
 }
 
 ?>
